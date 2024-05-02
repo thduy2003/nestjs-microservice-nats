@@ -1,9 +1,13 @@
 import { Module } from '@nestjs/common';
 import { UsersMicroserviceController } from './users.controller';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { User } from 'src/typeorm/entities/User';
+import { UsersService } from './users.service';
+import { Payment } from 'src/typeorm/entities/Payment';
 
 @Module({
-  imports: [],
+  imports: [TypeOrmModule.forFeature([User, Payment])],
   controllers: [UsersMicroserviceController],
-  exports: [],
+  providers: [UsersService],
 })
 export class UsersModule {}
